@@ -29,6 +29,9 @@ gem "jbuilder"
 # gem irb now depends on psych, but version 5 will not bundle currently
 gem "psych", "~> 4"
 
+gem 'rubocop'
+gem 'rubocop-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
