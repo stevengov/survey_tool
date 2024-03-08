@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <h1>Create New Survey</h1>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger mt-3" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @survey, url: surveys_path, method: :post) do |form| %>
+    <div class="mb-3">
+      <%= form.label :question, class: "form-label" %>
+      <%= form.text_field :question, class: "form-control" %>
+    </div>
+    <%= form.submit "Create Survey", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "Back to Surveys", surveys_path, class: "btn btn-secondary mt-3" %>
+</div>
