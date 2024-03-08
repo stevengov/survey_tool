@@ -22,7 +22,7 @@ Style/Encoding:
   Enabled: false
 
 Layout/EndOfLine:
-  Enabled: true
+  Enabled: false
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
