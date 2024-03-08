@@ -53,8 +53,6 @@ rails s
 ```
 7. Navigate to `localhost:3000` or `localhost:3000/surveys` on your browser. You should see the following
 
-Insert picture of home page
-
 ## Testing
 
 To run tests, run the following
