@@ -77,7 +77,7 @@ Finished in 0.621563s, 40.2212 runs/s, 122.2724 assertions/s.
 
 ## Features
 
-![Demo](./images/demo.mov)
+https://github.com/stevengov/survey_tool/assets/44922197/56571850-93dd-4455-bea2-6adfbe52bba4
 
 Survey Tool has the following features
 
@@ -94,19 +94,19 @@ Please use Rails to build a simple survey tool, with the following requirements:
 
 <details><summary>Creating a new `survey`</summary>
 
-![New Survey](./images/create_survey.mov)
+https://github.com/stevengov/survey_tool/assets/44922197/e9ef7f27-89b5-447a-9ce1-2feae15cf7de
 
 </details>
 
 <details><summary>Responding to a `survey`</summary>
 
-![New Response](./images/create_response.mov)
+https://github.com/stevengov/survey_tool/assets/44922197/a8b83114-ea49-4224-8d82-4997e1bc7aef
 
 </details>
 
 <details><summary>Showing `responses` of a `survey`</summary>
 
-![New Response](./images/show.mov)
+https://github.com/stevengov/survey_tool/assets/44922197/c848f1b0-54d7-436c-8155-6a802a6807c0
 
 </details>
 
@@ -188,12 +188,3 @@ With the creation of the a new `users` table, we can add some new associations
 We can add some `uniqueness` validations throughout the app
 - A `user` can only create a `survey` with a unique name.
 - A `user` can only respond to a `survey` once
-
-
-### Optimizations
-
-- Pagination: Briefly explain how you've implemented this.
-- Authentication: Briefly explain how you've implemented this.
-- Optimize query: Briefly explain how you've implemented this.
-- Timezone: Briefly explain how you've implemented this.
-
