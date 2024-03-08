@@ -60,7 +60,7 @@ Insert picture of home page
 To run tests, run the following
 ```bash
 RAILS_ENV=test bin/rails db:migrate
-rspec test
+rails test
 ```
 
 All tests should run and thus giving the following output
