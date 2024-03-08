@@ -1,2 +1,27 @@
-<h1>Responses#new</h1>
-<p>Find me in app/views/responses/new.html.erb</p>
+<div class="container mt-5">
+  <h1 class="my-4"><%= @survey.question %></h1>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger mt-3" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= form_with(model: [@survey, @survey.responses.build(type: 'Response')], url: survey_responses_path, method: :post) do |form| %>
+    <%= form.hidden_field :survey_id, value: @survey.id %>
+    <div class="mb-3">
+      <div class="form-check">
+        <%= form.radio_button :response_type, 'YesResponse', id: "response_type_yes", class: "form-check-input" %>
+        <%= form.label :response_type_yes, "Yes", class: "form-check-label" %>
+      </div>
+      <div class="form-check">
+        <%= form.radio_button :response_type, 'NoResponse', id: "response_type_no", class: "form-check-input" %>
+        <%= form.label :response_type_no, "No", class: "form-check-label" %>
+      </div>
+    </div>
+    <%= form.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "Back to Surveys", surveys_path, class: "btn btn-secondary mt-3" %>
+</div>
+
