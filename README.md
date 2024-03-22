@@ -123,23 +123,86 @@ The following section will contain details on how I would create my own user aut
 
 #### User Table
 
-We would create a `users` table that has a `email: string` and `password_digest: string`.
+We would create a `users` table that has a `email: string` and `password_digest: string` and `password_confirmation: string`
 
 #### User Registration
 
-We would create a controller that handles displaying a registration form.
+We would create a controller that handles displaying a registration form. We need endpoints for `index`, `new`, and `create`
 
 Additionally, Rails has a `has_secure_password` method where we can handle password encryptions. We will use that and define that in the `User` model. 
 
+```ruby
+class UsersController < ApplicationController
+  skip_before_action :authenticate_user, only: [:new, :create]
+
+  def index
+    @users = User.all
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      flash[:notice] = "User created successfully"
+      redirect_to users_path
+    else
+      flash[:alert] = "User not created"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :password)
+  end
+end
+```
+
 #### User Sessions
 
-We also need to manage the session so that we can keep track of the users that are logged-in.
+We also need to manage the session so that we can keep track of the users that are logged-in. We need endpoints for `new`, `create`, and `destroy`
 
-This involves using `Rails.application.config.session_store :cookie_store` and create a `SessionsController`. This will be for login and logout functionalities.
+```ruby
+class UserSessionsController < ApplicationController
+  skip_before_action :authenticate_user, only: [:new, :create]
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.find_by(name: user_params[:name])
+
+    if @user && @user.authenticate(user_params[:password])
+      session[:user_id] = @user.id
+      redirect_to users_path
+    else
+      flash[:alert] = "Login failed"
+      redirect_to new_user_session_path
+    end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path 
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :password)
+  end
+end
+```
 
 #### Authentication Controller
 
-We should only allow authenticated users to hit endpoints. To do this, we can define a `AuthenticatedController`. This controller will handle authenticating the user.
+We should only allow authenticated users to hit endpoints. To do this, we can define a `AuthenticatedController` or just simply do this in the `ApplicationController`. This controller will handle authenticating the user.
 
 Here's a basic authentication function
 
